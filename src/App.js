@@ -58,7 +58,7 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/artistsearch" component={ArtistSearch} />
-            <Route exact path="/searchcity" component={SearchCity} />
+            <Route exact path="/searchcity" component={SearchCity} updateProfile={this.updateProfile}/>
             <Route
               exact
               path="/profile/:id?"
@@ -71,7 +71,7 @@ class App extends React.Component {
                   <Profile
                     addProfile={this.addProfile}
                     addRecommendation={this.addRecommendation}
-                    addToBucketList={this.addToBucketList}
+                    addBucketListItem={this.addBucketListItem}
                     updateProfile={this.updateProfile}
                     profile={profile}
                     {...props}

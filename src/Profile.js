@@ -12,7 +12,7 @@ class Profile extends React.Component {
       recommendations: [],
     };
     this.addRecommendation = this.addRecommendation.bind(this);
-    this.addBucketListItem = this.addBucketListItem.bind(this)
+    this.addBucketListItem = this.addBucketListItem.bind(this);
   }
 
   /*
@@ -26,7 +26,6 @@ addToBucketList = (restaurant) => {
   */
 
   addBucketListItem(item) {
-    
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -53,13 +52,9 @@ addToBucketList = (restaurant) => {
           <button>Edit My Profile</button>
         </Link>
         <AddRecommendation addRecommendation={this.addRecommendation} />
-        {this.props.profile.recommendations.map((rec) => (
+        {this.props.profile.recommendations.map((restaurant) => (
           <RestaurantListing
-            name={rec.name}
-            city={rec.city}
-            state={rec.state}
-            website={rec.website}
-            price={rec.price}
+            restaurant={restaurant}
             addBucketListItem={this.addBucketListItem}
           />
         ))}
@@ -81,5 +76,13 @@ state = {
     bandname: "",
     bio: "",
   };
+name={rec.name}
+            city={rec.city}
+            state={rec.state}
+            website={rec.website}
+            price={rec.price}
+            addBucketListItem={this.addBucketListItem}
 
+  
+            
 */

@@ -12,14 +12,15 @@ class SearchCity extends React.Component {
   }
 
   handleUpdateSearchTerm(searchTerm) {
-    this.setState({ searchTerm })
+    this.setState({ searchTerm });
   }
 
-  addToBucketList() {
-    this.props.addToBucketList()
+  addBucketListItem(item) {
+    this.props.updateProfile({
+      ...this.props.profile,
+      bucketList: [...this.props.profile.bucketList, item],
+    });
   }
-  
-
 
   render() {
     return (
@@ -29,33 +30,39 @@ class SearchCity extends React.Component {
           <label for="city">Search by city:</label>
           <br></br>
           <input
-          type="text"
-          id="searchTerm"
-          value={this.state.searchTerm}
-          onChange={(event) => this.handleUpdateSearchTerm(event.target.value)}
-        ></input>
+            type="text"
+            id="searchTerm"
+            value={this.state.searchTerm}
+            onChange={(event) =>
+              this.handleUpdateSearchTerm(event.target.value)
+            }
+          ></input>
           <br></br>
-        
-        <div>
-          {restaurants.filter((restaurant) => {
-           if (this.state.searchTerm == "") {
-             return restaurant
-           } else if (restaurant.city.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
-             return restaurant
-           }
-          }).map((restaurant, key) => {
-            return (
-              <RestaurantListing
-                name={restaurant.name}
-                city={restaurant.city}
-                state={restaurant.state}
-                website={restaurant.website}
-                price={restaurant.price}
-                addToBucketList={this.addToBucketList}
-              />
-            );
-          })}
-        </div>
+
+          <div>
+            {restaurants
+              .filter((restaurant) => {
+                if (this.state.searchTerm == "") {
+                  return restaurant;
+                } else if (
+                  restaurant.city
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())
+                ) {
+                  return restaurant;
+                }
+              })
+              .map((restaurant, key) => {
+                return (
+                  <RestaurantListing
+                    restaurant={restaurant}
+                    addBucketListItem={this.addBucketListItem}
+                    
+
+                  />
+                );
+              })}
+          </div>
         </form>
       </div>
     );
@@ -81,5 +88,12 @@ export default SearchCity;
           </select>
         </form>
 
+
+
+        name={restaurant.name}
+                city={restaurant.city}
+                state={restaurant.state}
+                website={restaurant.website}
+                price={restaurant.price}
 
 */
