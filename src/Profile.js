@@ -26,6 +26,7 @@ addToBucketList = (restaurant) => {
   */
 
   addBucketListItem(item) {
+    
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -59,6 +60,7 @@ addToBucketList = (restaurant) => {
             state={rec.state}
             website={rec.website}
             price={rec.price}
+            addBucketListItem={this.addBucketListItem}
           />
         ))}
         <h3>Bucket List</h3>

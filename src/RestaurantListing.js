@@ -8,6 +8,7 @@ class RestaurantListing extends React.Component {
   }
 
   addBucketListItem(restaurant) {
+     
       this.props.addBucketListItem()
   }
 
@@ -24,7 +25,7 @@ class RestaurantListing extends React.Component {
             </a>
           </h5>
           <h5>Price Range: {this.props.price}</h5>
-          <button onClick={this.props.addBucketListItem}>
+          <button type="button" onClick={this.props.addBucketListItem}>
             Add to my bucketlist
           </button>
         </div>

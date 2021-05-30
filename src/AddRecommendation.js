@@ -14,7 +14,7 @@ class AddRecommendation extends React.Component {
     };
   }
 
-  
+
 
   addRecommendation = () => {
     this.props.addRecommendation();
@@ -69,7 +69,7 @@ class AddRecommendation extends React.Component {
             onChange={this.handleInput("price")}
           />
           <br></br>
-          <button type="submit" onSubmit={this.handleSubmit}>
+          <button type="submit">
             Add Recommendation
           </button>
         </form>
