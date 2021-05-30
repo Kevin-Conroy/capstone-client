@@ -4,6 +4,7 @@ import "./App.css";
 class RestaurantListing extends React.Component {
   constructor(props) {
     super(props);
+    this.addBucketListItem = this.addBucketListItem.bind(this)
   }
 
   addBucketListItem(restaurant) {
@@ -23,7 +24,7 @@ class RestaurantListing extends React.Component {
             </a>
           </h5>
           <h5>Price Range: {this.props.price}</h5>
-          <button onClick={this.addBucketListItem}>
+          <button onClick={this.props.addBucketListItem}>
             Add to my bucketlist
           </button>
         </div>

@@ -14,6 +14,8 @@ class AddRecommendation extends React.Component {
     };
   }
 
+  
+
   addRecommendation = () => {
     this.props.addRecommendation();
   };
