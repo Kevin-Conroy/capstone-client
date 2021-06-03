@@ -15,16 +15,6 @@ class Profile extends React.Component {
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }
 
-  /*
-  addRecommendation = (rec) => {
-    this.setState({ recommendations: [...this.state.recommendations, rec] });
-  };
-
-addToBucketList = (restaurant) => {
-    this.setState({ bucketList: [...this.state.bucketList, restaurant]})
-  }
-  */
-
   addBucketListItem(item) {
     this.props.updateProfile({
       ...this.props.profile,
@@ -45,7 +35,7 @@ addToBucketList = (restaurant) => {
         <h1>
           Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
-        <h3>Band/Artist: {this.props.profile.bandname}</h3>
+        <h3>Band/Artist: {this.props.profile.artistName}</h3>
         <h5>About me: {this.props.profile.bio}</h5>
 
         <Link to="/editprofile">
@@ -59,6 +49,12 @@ addToBucketList = (restaurant) => {
           />
         ))}
         <h3>Bucket List</h3>
+        {this.props.profile.bucketList.map((item) => (
+          <RestaurantListing
+            restaurant={item}
+            addBucketListItem={this.addBucketListItem}
+          />
+        ))}
       </div>
     );
   }

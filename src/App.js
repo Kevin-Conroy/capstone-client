@@ -4,12 +4,12 @@ import Welcome from "./Welcome";
 import Header from "./Header";
 import CreateProfile from "./CreateProfile";
 import ArtistSearch from "./ArtistSearch";
-import BucketList from "./BucketList";
 import SearchCity from "./SearchCity";
 import NavBar from "./NavBar";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import "./App.css";
+import profiles from "./ArtistData";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,8 +19,8 @@ class App extends React.Component {
 
     this.state = {
       profiles: [],
+
       userId: "",
-      
     };
   }
 
@@ -40,8 +40,10 @@ class App extends React.Component {
     });
   }
 
-
   render() {
+    const loggedInUser = this.state.profiles.find(
+      (p) => p.id === this.state.userId
+    );
     return (
       <main className="App">
         <div>
@@ -58,13 +60,23 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/artistsearch" component={ArtistSearch} />
-            <Route exact path="/searchcity" component={SearchCity} updateProfile={this.updateProfile}/>
+            <Route
+              exact
+              path="/searchcity"
+              render={(props) => (
+                <SearchCity
+                  profile={loggedInUser}
+                  updateProfile={this.updateProfile}
+                  addBucketListItem={this.addBucketListItem}
+                />
+              )}
+            />
             <Route
               exact
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === this.state.userId
+                  (p) => p.id === props.match.params.id || this.state.userId
                 );
 
                 return (
@@ -75,7 +87,6 @@ class App extends React.Component {
                     updateProfile={this.updateProfile}
                     profile={profile}
                     {...props}
-
                   />
                 );
               }}

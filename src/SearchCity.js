@@ -9,6 +9,7 @@ class SearchCity extends React.Component {
     this.state = {
       searchTerm: "",
     };
+    this.addBucketListItem = this.addBucketListItem.bind(this);
   }
 
   handleUpdateSearchTerm(searchTerm) {

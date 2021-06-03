@@ -4,18 +4,23 @@ import "./App.css";
 class RestaurantListing extends React.Component {
   constructor(props) {
     super(props);
-    this.addBucketListItem = this.addBucketListItem.bind(this);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  addBucketListItem() {
-    this.props.addBucketListItem();
-  }
+
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.addBucketListItem(this.props.restaurant);
+      
+  };
 
   render() {
     return (
       <main className="box">
         <div>
-          <h3>Name: {this.props.restaurant.name}</h3>
+        <h3>Name: {this.props.restaurant.name}</h3>
           <h5>City: {this.props.restaurant.city}</h5>
           <h5>State: {this.props.restaurant.state}</h5>
           <h5>
@@ -24,7 +29,7 @@ class RestaurantListing extends React.Component {
             </a>
           </h5>
           <h5>Price Range: {this.props.restaurant.price}</h5>
-          <button type="button" onClick={this.props.restaurant.addBucketListItem}>
+          <button type="button" onClick={this.handleSubmit}>
             Add to my bucketlist
           </button>
         </div>
@@ -34,3 +39,7 @@ class RestaurantListing extends React.Component {
 }
 
 export default RestaurantListing;
+
+/*
+
+          */
