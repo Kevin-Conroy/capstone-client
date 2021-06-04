@@ -7,10 +7,7 @@ import BucketList from "./BucketList";
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      bucketList: [],
-      recommendations: [],
-    };
+    
     this.addRecommendation = this.addRecommendation.bind(this);
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }

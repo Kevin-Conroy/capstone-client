@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import artists from "./ArtistData";
+import profiles from "./ArtistData";
 import Profile from "./Profile";
 
 class ArtistSearch extends React.Component {
@@ -31,21 +31,21 @@ class ArtistSearch extends React.Component {
         <br></br>
 
         <div>
-          {artists
-            .filter((artist) => {
+          {profiles
+            .filter((profile) => {
               if (this.state.artistName == "") {
-                return artist;
+                return profile;
               } else if (
-                artist.firstName
+                profile.firstName
                   .toLowerCase()
                   .includes(this.state.artistName.toLowerCase())
               ) {
-                return artist;
+                return profile;
               }
             })
-            .map((artist, key) => {
+            .map((profile, key) => {
               return <div>
-                <Link to={"/profile/" + artist.id}>{artist.firstName} {artist.lastName}</Link>
+                <Link to={"/profile/" + profile.id}>{profile.firstName} {profile.lastName}</Link>
               </div>;
             })}
         </div>
