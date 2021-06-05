@@ -7,7 +7,7 @@ import BucketList from "./BucketList";
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.addRecommendation = this.addRecommendation.bind(this);
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }
@@ -34,11 +34,14 @@ class Profile extends React.Component {
         </h1>
         <h3>Band/Artist: {this.props.profile.artistName}</h3>
         <h5>About me: {this.props.profile.bio}</h5>
-
-        <Link to="/editprofile">
-          <button>Edit My Profile</button>
-        </Link>
-        <AddRecommendation addRecommendation={this.addRecommendation} />
+        {this.props.profile.id === this.props.userId && (
+          <Link to="/editprofile">
+            <button>Edit My Profile</button>
+          </Link>
+        )}
+        {this.props.profile.id === this.props.userId && (
+          <AddRecommendation addRecommendation={this.addRecommendation} />
+        )}
         {this.props.profile.recommendations.map((restaurant) => (
           <RestaurantListing
             restaurant={restaurant}

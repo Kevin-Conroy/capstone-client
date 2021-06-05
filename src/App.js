@@ -76,8 +76,8 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-
-                  (p) => p.id === +props.match.params.id || this.state.userId
+             
+                  (p) => p.id === (+props.match.params.id || this.state.userId)
                 );
 
                 return (
@@ -87,6 +87,7 @@ class App extends React.Component {
                     addBucketListItem={this.addBucketListItem}
                     updateProfile={this.updateProfile}
                     profile={profile}
+                    userId={this.state.userId}
                     {...props}
                   />
                 );
