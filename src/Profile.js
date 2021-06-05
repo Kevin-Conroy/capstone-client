@@ -32,7 +32,7 @@ class Profile extends React.Component {
         <h1>
           Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
-        <h3>Band/Artist: {this.props.profile.artistName}</h3>
+        <h3>Band/Artist: {this.props.profile.bandname}</h3>
         <h5>About me: {this.props.profile.bio}</h5>
         {this.props.profile.id === this.props.userId && (
           <Link to="/editprofile">
