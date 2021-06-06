@@ -17,10 +17,6 @@ class SearchCity extends React.Component {
   }
 
   addBucketListItem(item) {
-    if (!this.props.profile) {
-      alert("Please create a profile first")
-      return <Redirect to="/createprofile" />;
-    }
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -61,7 +57,7 @@ class SearchCity extends React.Component {
                 return (
                   <RestaurantListing
                     restaurant={restaurant}
-                    loggedInUser={this.props.loggedInUser}
+                    loggedInUser={this.props.profile}
                     addBucketListItem={this.addBucketListItem}
                   />
                 );

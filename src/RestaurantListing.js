@@ -15,7 +15,7 @@ class RestaurantListing extends React.Component {
   };
 
   render() {
-    
+
     return (
       <main className="box">
         <div>
@@ -28,9 +28,10 @@ class RestaurantListing extends React.Component {
             </a>
           </h5>
           <h5>Price Range: {this.props.restaurant.price}</h5>
+          {!!this.props.loggedInUser &&
           <button type="button" onClick={this.handleSubmit}>
             Add to my bucketlist
-          </button>
+            </button>}
         </div>
       </main>
     );
