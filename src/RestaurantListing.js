@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { Redirect } from "react-router-dom";
 
 class RestaurantListing extends React.Component {
   constructor(props) {
@@ -8,19 +9,17 @@ class RestaurantListing extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
-
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.addBucketListItem(this.props.restaurant);
-      
   };
 
   render() {
+    
     return (
       <main className="box">
         <div>
-        <h3>Name: {this.props.restaurant.name}</h3>
+          <h3>Name: {this.props.restaurant.name}</h3>
           <h5>City: {this.props.restaurant.city}</h5>
           <h5>State: {this.props.restaurant.state}</h5>
           <h5>

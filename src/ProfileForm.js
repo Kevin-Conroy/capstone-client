@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  BrowserRouter,
+  Redirect
+} from "react-router-dom";
 
 class ProfileForm extends React.Component {
   constructor(props) {
@@ -45,6 +49,11 @@ class ProfileForm extends React.Component {
 
   handleSubmit(event) {
       event.preventDefault();
+      if (!this.state.firstName || !this.state.lastName) {
+          alert("First & last name are required");
+          return <Redirect to="/createprofile" />
+
+      }
       this.props.handleSubmit(this.state)
   }
 
@@ -53,14 +62,14 @@ class ProfileForm extends React.Component {
       <form>
         <label>First name:</label>
         <input
-          type="text"
+          type="text" 
           id="firstname"
           value={this.state.firstName}
           onChange={(event) => this.updateFirstName(event.target.value)}
-        ></input>
+        />
         <br></br>
         <label>Last name:</label>
-        <input
+        <input required
           type="text"
           id="lastname"
           value={this.state.lastName}
@@ -68,7 +77,7 @@ class ProfileForm extends React.Component {
         ></input>
         <br></br>
         <label>Username:</label>
-        <input
+        <input required
           type="text"
           id="username"
           value={this.state.username}
@@ -108,7 +117,7 @@ class ProfileForm extends React.Component {
         ></input>
         <br></br>
 
-        <button onClick={this.handleSubmit.bind(this)}>
+        <button type="submit" onClick={this.handleSubmit.bind(this)}>
           Submit
         </button>
       </form>

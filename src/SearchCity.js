@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import restaurants from "./RestaurantData";
 import RestaurantListing from "./RestaurantListing";
 
@@ -17,6 +17,10 @@ class SearchCity extends React.Component {
   }
 
   addBucketListItem(item) {
+    if (!this.props.profile) {
+      alert("Please create a profile first")
+      return <Redirect to="/createprofile" />;
+    }
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -57,9 +61,8 @@ class SearchCity extends React.Component {
                 return (
                   <RestaurantListing
                     restaurant={restaurant}
+                    loggedInUser={this.props.loggedInUser}
                     addBucketListItem={this.addBucketListItem}
-                    
-
                   />
                 );
               })}
