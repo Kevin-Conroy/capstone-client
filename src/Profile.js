@@ -2,12 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AddRecommendation from "./AddRecommendation";
 import RestaurantListing from "./RestaurantListing";
-import BucketList from "./BucketList";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.addRecommendation = this.addRecommendation.bind(this);
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }
@@ -32,6 +31,7 @@ class Profile extends React.Component {
         <h1>
           Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
+        <img src={this.props.profile.profilePicture} alt="Profile Picture"></img>
         <h3>Band/Artist: {this.props.profile.bandname}</h3>
         <h5>About me: {this.props.profile.bio}</h5>
         {this.props.profile.id === this.props.userId && (

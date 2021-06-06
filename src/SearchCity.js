@@ -28,7 +28,7 @@ class SearchCity extends React.Component {
       <div>
         <form>
           <br></br>
-          <label for="city">Search by city:</label>
+          <label for="city">Enter a City:</label>
           <br></br>
           <input
             type="text"

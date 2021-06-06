@@ -31,7 +31,7 @@ class ArtistSearch extends React.Component {
         <br></br>
 
         <div>
-          {profiles
+          {this.props.profiles
             .filter((profile) => {
               if (this.state.artistName == "") {
                 return profile;

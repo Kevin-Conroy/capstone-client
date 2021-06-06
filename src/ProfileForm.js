@@ -11,6 +11,7 @@ class ProfileForm extends React.Component {
       password: "",
       bandname: "",
       bio: "",
+      profilePicture: "",
     };
   }
 
@@ -36,6 +37,10 @@ class ProfileForm extends React.Component {
 
   updateBio(bio) {
     this.setState({ bio });
+  }
+
+  updateProfilePicture(profilePicture) {
+    this.setState({ profilePicture });
   }
 
   handleSubmit(event) {
@@ -68,6 +73,14 @@ class ProfileForm extends React.Component {
           id="username"
           value={this.state.username}
           onChange={(event) => this.updateUsername(event.target.value)}
+        ></input>
+        <br></br>
+        <label>Profile Pic (Please provide URL):</label>
+        <input
+          type="text"
+          id="profilePic"
+          value={this.state.profilePicture}
+          onChange={(event) => this.updateProfilePicture(event.target.value)}
         ></input>
         <br></br>
         <label>Password</label>

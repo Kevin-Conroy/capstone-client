@@ -13,8 +13,8 @@ function NavBar() {
     <main className="App">
       <div>
         <NavLink to="/profile">Home</NavLink>&nbsp;
-        <NavLink to="/profile/id?">Profile</NavLink>&nbsp;
-        <NavLink to="/searchcity">Search By City</NavLink>&nbsp;
+        <NavLink to="/profile">Profile</NavLink>&nbsp;
+        <NavLink to="/searchcity">Find A Spot</NavLink>&nbsp;
         <NavLink to="/artistsearch">Artist Search</NavLink>&nbsp;
       </div>
     </main>

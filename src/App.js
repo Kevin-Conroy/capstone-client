@@ -18,11 +18,14 @@ class App extends React.Component {
     this.updateProfile = this.updateProfile.bind(this);
 
     this.state = {
-      profiles: profiles.map(profile => ({ ...profile, recommendations: [], bucketList: [] })),
-      userId: ""
+      profiles: profiles.map((profile) => ({
+        ...profile,
+        recommendations: [],
+        bucketList: [],
+      })),
+      userId: "",
     };
   }
-
 
   addProfile(profile) {
     this.setState({
@@ -59,7 +62,13 @@ class App extends React.Component {
                 <CreateProfile addProfile={this.addProfile} {...props} />
               )}
             />
-            <Route exact path="/artistsearch" component={ArtistSearch} />
+            <Route
+              exact
+              path="/artistsearch"
+              render={(props) => (
+                <ArtistSearch profiles={this.state.profiles} />
+              )}
+            />
             <Route
               exact
               path="/searchcity"
@@ -76,7 +85,6 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-             
                   (p) => p.id === (+props.match.params.id || this.state.userId)
                 );
 
