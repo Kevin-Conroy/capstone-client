@@ -17,7 +17,8 @@ class AddRecommendation extends React.Component {
 
 
   addRecommendation = () => {
-    this.props.addRecommendation();
+    //this.props.addRecommendation();
+    fetch(`https://food-on-tour-api.herokuapp.com/profiles`).then(response => (response.json));
   };
 
   handleSubmit = (event) => {
