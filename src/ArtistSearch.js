@@ -5,7 +5,9 @@ import Profile from "./Profile";
 
 class ArtistSearch extends React.Component {
   state = {
+    artists: [],
     artistName: "",
+
   };
 
   handleArtistSearch(artistName) {
@@ -15,6 +17,16 @@ class ArtistSearch extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("Submitted");
+  }
+
+  componentDidMount() {
+    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+      .then(response => response.json())
+      .then(data => {
+        const artists = data;
+        console.log(artists);
+        this.setState({ artists })
+      });
   }
 
   render() {
