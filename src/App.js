@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, withRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import Welcome from "./Welcome";
 import Header from "./Header";
 import CreateProfile from "./CreateProfile";
@@ -40,7 +40,7 @@ class App extends React.Component {
     this.setState({
       profiles: [...this.state.profiles, profile],
       userId: profile.id,
-    });
+    }, () => this.props.history.push("/profile"));
   }
 
   updateProfile(profile) {
@@ -94,7 +94,8 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === (props.match.params.id || this.state.userId)
+                  (p) => p.id === (props.match.params.id || this.state.userId),
+                  console.log(this.props.userId)
                 );
 
                 return (
@@ -134,4 +135,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
