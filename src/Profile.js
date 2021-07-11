@@ -42,10 +42,10 @@ class Profile extends React.Component {
     return (
       <div>
         <h1>
-          Name: {this.props.profile.firstName} {this.props.profile.lastName}
+          Name: {this.props.profile.first_name} {this.props.profile.last_name}
         </h1>
         <img
-          src={this.props.profile.profilePicture}
+          src={this.props.profile.pic_url}
           alt="Profile Picture"
         ></img>
         <h3>Band/Artist: {this.props.profile.bandname}</h3>
@@ -70,8 +70,10 @@ class Profile extends React.Component {
             restaurant={item}
             addBucketListItem={this.addBucketListItem}
           />
-        ))}
-      </div>
+        
+        
+        ))
+        }</div>
     );
   }
 }
@@ -94,6 +96,22 @@ name={rec.name}
             website={rec.website}
             price={rec.price}
             addBucketListItem={this.addBucketListItem}
+
+
+
+
+            {this.props.profile.recommendations.map((restaurant) => (
+          <RestaurantListing
+            restaurant={restaurant}
+            addBucketListItem={this.addBucketListItem}
+          />
+        ))}
+        <h3>Bucket List</h3>
+        {this.props.profile.bucketList.map((item) => (
+          <RestaurantListing
+            restaurant={item}
+            addBucketListItem={this.addBucketListItem}
+          />
 
   
             

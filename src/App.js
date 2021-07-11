@@ -27,6 +27,15 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+      .then(response => response.json())
+      .then(profiles => {
+        console.log(profiles);
+        this.setState({ profiles })
+      });
+  }
+
   addProfile(profile) {
     this.setState({
       profiles: [...this.state.profiles, profile],
@@ -85,7 +94,7 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === (+props.match.params.id || this.state.userId)
+                  (p) => p.id === (props.match.params.id || this.state.userId)
                 );
 
                 return (

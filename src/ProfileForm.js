@@ -11,7 +11,7 @@ class ProfileForm extends React.Component {
     this.state = props.profile || {
       firstName: "",
       lastName: "",
-      username: "",
+      userName: "",
       password: "",
       bandname: "",
       bio: "",
@@ -27,8 +27,8 @@ class ProfileForm extends React.Component {
     this.setState({ lastName });
   }
 
-  updateUsername(username) {
-    this.setState({ username });
+  updateUsername(userName) {
+    this.setState({ userName });
   }
 
   updatePassword(password) {
@@ -52,10 +52,48 @@ class ProfileForm extends React.Component {
       if (!this.state.firstName || !this.state.lastName) {
           alert("First & last name are required");
           return <Redirect to="/createprofile" />
-
       }
-      this.props.handleSubmit(this.state)
-  }
+    const { firstName, lastName, userName, password, bandname, bio, profilePicture } = this.state;
+    const profile = this.state
+    const url ='https://food-on-tour-api.herokuapp.com/profiles';
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(profile),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    };
+    fetch(url, options)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Something went wrong, please try again later');
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log(data)
+        this.setState({
+
+          firstName: "",
+          lastName: "",
+          userName: "",
+          password: "",
+          bandname: "",
+          bio: "",
+          profilePicture: ""
+          
+        
+        });
+        
+        this.props.handleSubmit(profile);
+      })
+      .catch(err => {
+        this.setState({
+          error: err.message
+        });
+      });
+  
+    }
 
   render() {
     return (
@@ -80,7 +118,7 @@ class ProfileForm extends React.Component {
         <input required
           type="text"
           id="username"
-          value={this.state.username}
+          value={this.state.userName}
           onChange={(event) => this.updateUsername(event.target.value)}
         ></input>
         <br></br>

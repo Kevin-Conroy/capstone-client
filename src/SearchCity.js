@@ -7,7 +7,8 @@ class SearchCity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: "",
+      restaurants: [],
+      searchTerm: ""
     };
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }
@@ -21,6 +22,15 @@ class SearchCity extends React.Component {
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
     });
+  }
+
+  componentDidMount() {
+    fetch('https://food-on-tour-api.herokuapp.com/searchcity')
+      .then(response => response.json())
+      .then(restaurants => {
+        console.log(restaurants);
+        this.setState({ restaurants })
+      });
   }
 
   render() {
@@ -41,7 +51,7 @@ class SearchCity extends React.Component {
           <br></br>
 
           <div>
-            {restaurants
+            {this.state.restaurants
               .filter((restaurant) => {
                 if (this.state.searchTerm == "") {
                   return restaurant;

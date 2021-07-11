@@ -11,7 +11,7 @@ import ProfileForm from "./ProfileForm";
 
 class CreateProfile extends React.Component {
   handleSubmit = (profile) => {
-    this.props.addProfile({ ...profile, id: uuid(), recommendations: [], bucketList: [] });
+    this.props.addProfile({ ...profile, recommendations: [], bucketList: [] });
     this.props.history.push("/profile");
   };
 

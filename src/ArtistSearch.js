@@ -4,9 +4,15 @@ import profiles from "./ArtistData";
 import Profile from "./Profile";
 
 class ArtistSearch extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
     artists: [],
     artistName: "",
+    }
+
+  this.handleArtistSearch = this.handleArtistSearch.bind(this)
 
   };
 
@@ -22,8 +28,7 @@ class ArtistSearch extends React.Component {
   componentDidMount() {
     fetch('https://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
-      .then(data => {
-        const artists = data;
+      .then(artists => {
         console.log(artists);
         this.setState({ artists })
       });
@@ -43,12 +48,12 @@ class ArtistSearch extends React.Component {
         <br></br>
 
         <div>
-          {this.props.profiles
+          {this.state.artists
             .filter((profile) => {
-              if (this.state.artistName == "") {
+              if (!this.state.artistName) {
                 return profile;
               } else if (
-                profile.firstName
+                profile.first_name
                   .toLowerCase()
                   .includes(this.state.artistName.toLowerCase())
               ) {
@@ -57,7 +62,7 @@ class ArtistSearch extends React.Component {
             })
             .map((profile, key) => {
               return <div>
-                <Link to={"/profile/" + profile.id}>{profile.firstName} {profile.lastName}</Link>
+                <Link to={"/profile/" + profile.id}>{profile.first_name} {profile.last_name}</Link>
               </div>;
             })}
         </div>
