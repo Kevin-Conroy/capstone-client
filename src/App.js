@@ -98,7 +98,7 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === (Number(props.match.params.id || this.state.userId)),
+                  (p) => p.id === (Number(props.match.params.id) || this.state.userId),
                   
                 );
 

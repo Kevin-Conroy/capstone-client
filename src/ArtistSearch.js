@@ -26,7 +26,7 @@ class ArtistSearch extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+    fetch('http://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
       .then(artists => {
         console.log(artists);
