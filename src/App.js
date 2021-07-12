@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://food-on-tour-api.herokuapp.com/profiles')
+    fetch('https://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);
