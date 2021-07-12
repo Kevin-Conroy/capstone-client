@@ -23,9 +23,50 @@ class AddRecommendation extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`https://food-on-tour-api.herokuapp.com/profiles`).then(response => (response.json));
-    this.props.addRecommendation(this.state);
-  };
+    if (!this.state.name || !this.state.city || !this.state.state) {
+      alert("Name, city, and state are required");
+  }
+const { name, city, state, website, priceRange } = this.state;
+const recommendation = this.state
+const url ='https://food-on-tour-api.herokuapp.com/addrecommendation';
+const options = {
+  method: 'POST',
+  body: JSON.stringify(recommendation),
+  headers: {
+    "Content-Type": "application/json",
+  }
+};
+fetch(url, options)
+  .then(res => {
+    if(!res.ok) {
+      throw new Error('Something went wrong, please try again later');
+    }
+    return res.json();
+  })
+  .then(data => {
+    console.log(data)
+    this.setState({
+
+      name: "",
+      city: "",
+      state: "",
+      website: "",
+      priceRange: ""
+      
+    
+    });
+    
+    this.props.handleSubmit(data);
+  })
+  .catch(err => {
+    this.setState({
+      error: err.message
+    });
+  });
+  this.props.addRecommendation(this.state);
+}
+    
+  
 
   handleInput = (field) => (event) => {
     this.setState({ [field]: event.target.value });
@@ -77,7 +118,7 @@ class AddRecommendation extends React.Component {
         </form>
       </div>
     );
-  }
+    }
 }
 
 export default AddRecommendation;

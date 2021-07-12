@@ -55,7 +55,7 @@ class ProfileForm extends React.Component {
       }
     const { firstName, lastName, userName, password, bandname, bio, profilePicture } = this.state;
     const profile = this.state
-    const url ='http://localhost:8000/profiles';
+    const url ='https://food-on-tour-api.herokuapp.com/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),
@@ -85,7 +85,7 @@ class ProfileForm extends React.Component {
         
         });
         
-        this.props.handleSubmit(profile);
+        this.props.handleSubmit(data);
       })
       .catch(err => {
         this.setState({

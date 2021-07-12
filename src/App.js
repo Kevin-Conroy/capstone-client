@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, withRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { Router, withRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 import Welcome from "./Welcome";
 import Header from "./Header";
 import CreateProfile from "./CreateProfile";
@@ -10,6 +11,8 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import "./App.css";
 import profiles from "./ArtistData";
+
+const history = createBrowserHistory();
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +31,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+    fetch('http://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);
@@ -40,7 +43,7 @@ class App extends React.Component {
     this.setState({
       profiles: [...this.state.profiles, profile],
       userId: profile.id,
-    }, () => this.props.history.push("/profile"));
+    }, () => history.push("/profile/"));
   }
 
   updateProfile(profile) {
@@ -53,13 +56,14 @@ class App extends React.Component {
   }
 
   render() {
+    
     const loggedInUser = this.state.profiles.find(
       (p) => p.id === this.state.userId
     );
     return (
       <main className="App">
         <div>
-          <Router>
+          <Router history={history}>
             <Header />
             <NavBar />
 
@@ -94,8 +98,8 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === (props.match.params.id || this.state.userId),
-                  console.log(this.props.userId)
+                  (p) => p.id === (Number(props.match.params.id || this.state.userId)),
+                  
                 );
 
                 return (

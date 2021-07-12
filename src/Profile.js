@@ -42,10 +42,10 @@ class Profile extends React.Component {
     return (
       <div>
         <h1>
-          Name: {this.props.profile.first_name} {this.props.profile.last_name}
+          Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
         <img
-          src={this.props.profile.pic_url}
+          src={this.props.profile.profilePicture}
           alt="Profile Picture"
         ></img>
         <h3>Band/Artist: {this.props.profile.bandname}</h3>
