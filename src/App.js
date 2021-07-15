@@ -10,9 +10,10 @@ import NavBar from "./NavBar";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import "./App.css";
-import profiles from "./ArtistData";
+//import profiles from "./ArtistData";
 
 const history = createBrowserHistory();
+const profiles = []
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.updateProfile = this.updateProfile.bind(this);
 
     this.state = {
+     
       profiles: profiles.map((profile) => ({
         ...profile,
         recommendations: [],
@@ -31,7 +33,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+    fetch('http://localhost:8000/profiles')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);

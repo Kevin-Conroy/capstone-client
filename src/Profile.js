@@ -9,6 +9,8 @@ import {
 import AddRecommendation from "./AddRecommendation";
 import RestaurantListing from "./RestaurantListing";
 
+
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,7 @@ class Profile extends React.Component {
   }
 
   addBucketListItem(item) {
+    
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -30,6 +33,8 @@ class Profile extends React.Component {
       recommendations: [...this.props.profile.recommendations, rec],
     });
   }
+
+ 
 
   render() {
     const redirect = this.props.profile;
@@ -44,12 +49,18 @@ class Profile extends React.Component {
         <h1>
           Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
+        {this.props.profile.profilePicture &&
         <img
           src={this.props.profile.profilePicture}
           alt="Profile Picture"
-        ></img>
-        <h3>Band/Artist: {this.props.profile.bandname}</h3>
-        <h5>About me: {this.props.profile.bio}</h5>
+        ></img>}
+
+        {this.props.profile.bandname &&
+        <h3>Band/Artist: {this.props.profile.bandname}</h3>}
+
+        {this.props.profile.bio &&
+        <h5>About me: {this.props.profile.bio}</h5>}
+
         {this.props.profile.id === this.props.userId && (
           <Link to="/editprofile">
             <button>Edit My Profile</button>
@@ -64,13 +75,14 @@ class Profile extends React.Component {
             addBucketListItem={this.addBucketListItem}
           />
         ))}
-        <h3>Bucket List</h3>
+       {this.props.profile.bucketList && this.props.profile.bucketList.length > 0 && 
+        <h3>Bucket List</h3>}
         {this.props.profile.bucketList.map((item) => (
           <RestaurantListing
             restaurant={item}
             addBucketListItem={this.addBucketListItem}
           />
-        
+  
         
         ))
         }</div>
@@ -79,40 +91,3 @@ class Profile extends React.Component {
 }
 
 export default Profile;
-
-/*
-
-state = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    bandname: "",
-    bio: "",
-  };
-name={rec.name}
-            city={rec.city}
-            state={rec.state}
-            website={rec.website}
-            price={rec.price}
-            addBucketListItem={this.addBucketListItem}
-
-
-
-
-            {this.props.profile.recommendations.map((restaurant) => (
-          <RestaurantListing
-            restaurant={restaurant}
-            addBucketListItem={this.addBucketListItem}
-          />
-        ))}
-        <h3>Bucket List</h3>
-        {this.props.profile.bucketList.map((item) => (
-          <RestaurantListing
-            restaurant={item}
-            addBucketListItem={this.addBucketListItem}
-          />
-
-  
-            
-*/

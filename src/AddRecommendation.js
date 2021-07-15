@@ -75,7 +75,7 @@ fetch(url, options)
   render() {
     return (
       <div>
-        <h4>My Recommendations</h4>
+        <h3>My Recommendations</h3>
         <form onSubmit={this.handleSubmit}>
           <input
             id="name"

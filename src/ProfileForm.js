@@ -55,7 +55,7 @@ class ProfileForm extends React.Component {
       }
     const { firstName, lastName, userName, password, bandname, bio, profilePicture } = this.state;
     const profile = this.state
-    const url ='https://food-on-tour-api.herokuapp.com/profiles';
+    const url ='http://localhost:8000/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),
@@ -86,6 +86,7 @@ class ProfileForm extends React.Component {
         });
         
         this.props.handleSubmit(data);
+        console.log(this.props)
       })
       .catch(err => {
         this.setState({
@@ -132,7 +133,7 @@ class ProfileForm extends React.Component {
         <br></br>
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           id="password"
           value={this.state.password}
           onChange={(event) => this.updatePassword(event.target.value)}
