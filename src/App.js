@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
+    fetch('http://localhost:8000')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);

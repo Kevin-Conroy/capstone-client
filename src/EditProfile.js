@@ -51,7 +51,7 @@ class EditProfile extends React.Component {
     const id = profile.id
     console.log(profile.id)
     
-    const url =`https://food-on-tour-api.herokuapp.com/profile/${id}`;
+    const url =`http://localhost:8000/profile/${id}`;
     const options = {
       method: 'PATCH',
       body: JSON.stringify(profile),
