@@ -8,6 +8,8 @@ import {
   NavLink,
 } from "react-router-dom";
 
+
+
 class EditProfile extends React.Component {
   state = {
     firstName: "",
@@ -45,10 +47,11 @@ class EditProfile extends React.Component {
   handleUpdateProfile(profile) {
     this.props.updateProfile(profile);
     this.props.history.push("/profile")
+
+    const id = profile.id
+    console.log(profile.id)
     
-    const { firstName, lastName, userName, password, bandname, bio, profilePicture } = this.state;
-    const profile = this.state
-    const url ='https://food-on-tour-api.herokuapp.com/profile/:id';
+    const url =`https://food-on-tour-api.herokuapp.com/profile/${id}`;
     const options = {
       method: 'PATCH',
       body: JSON.stringify(profile),
@@ -62,23 +65,10 @@ class EditProfile extends React.Component {
           throw new Error('Something went wrong, please try again later');
         }
         return res.json();
-      })
+        })
       .then(data => {
         console.log(data)
-        this.setState({
-
-          firstName: "",
-          lastName: "",
-          userName: "",
-          password: "",
-          bandname: "",
-          bio: "",
-          profilePicture: ""
-          
-        
-        });
-        
-        this.props.handleSubmit(data);
+    
         console.log(this.props)
       })
       .catch(err => {

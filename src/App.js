@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/profiles')
+    fetch('https://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);
@@ -43,18 +43,27 @@ class App extends React.Component {
 
   addProfile(profile) {
     this.setState({
-      profiles: [...this.state.profiles, profile],
+      profiles: [...this.state.profiles, { ...profile, bucketList: [], recommendations: [] } ],
       userId: profile.id,
+      bucketList: [],
+      recommendations: []
+
     }, () => history.push("/profile/"));
   }
 
   updateProfile(profile) {
+    console.log(profile)
     const otherProfiles = this.state.profiles.filter(
       (p) => p.id !== profile.id
+      
+      
     );
+    console.log(this.state.profiles)
     this.setState({
       profiles: [...otherProfiles, profile],
+      
     });
+    console.log(this.state.profiles)
   }
 
   render() {
@@ -112,6 +121,9 @@ class App extends React.Component {
                     updateProfile={this.updateProfile}
                     profile={profile}
                     userId={this.state.userId}
+                    recommendations={this.recommendations}
+                    bucketList={this.bucketList}
+                    
                     {...props}
                   />
                 );

@@ -13,6 +13,46 @@ class CreateProfile extends React.Component {
   handleSubmit = (profile) => {
     this.props.addProfile({ ...profile, recommendations: [], bucketList: [] });
     //this.props.history.push("/profile");
+
+    //const profile = this.state
+    const url ='https://food-on-tour-api.herokuapp.com/profiles';
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(profile),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    };
+    fetch(url, options)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Something went wrong, please try again later');
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log(data)
+        this.setState({
+
+          firstName: "",
+          lastName: "",
+          userName: "",
+          password: "",
+          bandname: "",
+          bio: "",
+          profilePicture: ""
+          
+        
+        });
+        this.props.addProfile(data);
+        console.log(this.props)
+      })
+      .catch(err => {
+        this.setState({
+          error: err.message
+        });
+      });
+ 
   };
 
   render() {

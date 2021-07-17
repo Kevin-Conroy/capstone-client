@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import profiles from "./ArtistData";
 import Profile from "./Profile";
 
 class ArtistSearch extends React.Component {
@@ -8,7 +7,7 @@ class ArtistSearch extends React.Component {
     super(props);
     
     this.state = {
-    artists: [],
+   
     artistName: "",
     }
 
@@ -24,7 +23,7 @@ class ArtistSearch extends React.Component {
     event.preventDefault();
     console.log("Submitted");
   }
-
+/*
   componentDidMount() {
     fetch('https://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
@@ -33,7 +32,7 @@ class ArtistSearch extends React.Component {
         this.setState({ artists })
       });
   }
-
+*/
   render() {
     return (
       <div>
@@ -48,7 +47,7 @@ class ArtistSearch extends React.Component {
         <br></br>
 
         <div>
-          {this.state.artists
+          {this.props.profiles
             .filter((profile) => {
               if (!this.state.artistName) {
                 return profile;
