@@ -15,7 +15,7 @@ class CreateProfile extends React.Component {
     //this.props.history.push("/profile");
 
     //const profile = this.state
-    const url ='http://localhost:8000/profiles';
+    const url ='https://food-on-tour-api.herokuapp.com/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),
