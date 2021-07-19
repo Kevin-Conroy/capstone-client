@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    
 }
 
 .box {
@@ -12,4 +13,23 @@
     margin: 20px;  
     padding: 5px;
     text-align: center;
+    animation: fadeIn 2s;
   }
+
+  body {
+    background: #000000;
+    animation: fadeInAnimation 1s ease;
+    color: white;
+    padding: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

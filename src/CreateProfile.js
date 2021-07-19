@@ -11,11 +11,11 @@ import ProfileForm from "./ProfileForm";
 
 class CreateProfile extends React.Component {
   handleSubmit = (profile) => {
-    this.props.addProfile({ ...profile, recommendations: [], bucketList: [] });
+    //this.props.addProfile({ ...profile, recommendations: [], bucketList: [] });
     //this.props.history.push("/profile");
 
     //const profile = this.state
-    const url ='https://food-on-tour-api.herokuapp.com/profiles';
+    const url ='http://localhost:8000/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),

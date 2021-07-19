@@ -61,7 +61,7 @@ class ArtistSearch extends React.Component {
             })
             .map((profile, key) => {
               return <div>
-                <Link to={"/profile/" + profile.id}>{profile.first_name} {profile.last_name}</Link>
+                <Link style={{color: "lightblue"}} to={"/profile/" + profile.id}>{profile.firstName} {profile.lastName}</Link>
               </div>;
             })}
         </div>

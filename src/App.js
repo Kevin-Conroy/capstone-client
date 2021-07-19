@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import "./App.css";
 //import profiles from "./ArtistData";
+import LoginForm from "./LoginForm"
 
 const history = createBrowserHistory();
 const profiles = []
@@ -33,7 +34,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000')
+    fetch('https://food-on-tour-api.herokuapp.com/profiles')
       .then(response => response.json())
       .then(profiles => {
         console.log(profiles);
@@ -86,6 +87,7 @@ class App extends React.Component {
                 <CreateProfile addProfile={this.addProfile} {...props} />
               )}
             />
+         
             <Route
               exact
               path="/artistsearch"
@@ -112,7 +114,7 @@ class App extends React.Component {
                   (p) => p.id === (Number(props.match.params.id) || this.state.userId),
                   
                 );
-
+                console.log(profile);
                 return (
                   <Profile
                     addProfile={this.addProfile}
@@ -154,3 +156,15 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
+
+   /*
+            <Route 
+              exact
+              path="/login"
+              render={() => loggedInUser ? 
+              <Redirect to="/profile" /> : 
+              <LoginForm />}
+               
+
+            />  
+            */

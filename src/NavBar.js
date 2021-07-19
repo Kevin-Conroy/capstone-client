@@ -12,9 +12,9 @@ function NavBar() {
   return (
     <main className="App">
       <div>
-        <NavLink to="/profile">Profile</NavLink>&nbsp;
-        <NavLink to="/searchcity">Find A Spot</NavLink>&nbsp;
-        <NavLink to="/artistsearch">Artist Search</NavLink>&nbsp;
+        <NavLink style={{color: "lightblue"}}to="/profile">Profile</NavLink>&nbsp;
+        <NavLink style={{color: "lightblue"}}to="/searchcity">Find A Spot</NavLink>&nbsp;
+        <NavLink style={{color: "lightblue"}}to="/artistsearch">Artist Search</NavLink>&nbsp;
       </div>
     </main>
   );
