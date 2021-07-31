@@ -1,21 +1,9 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  push,
-} from "react-router-dom";
-import { v4 as uuid } from "uuid";
 import ProfileForm from "./ProfileForm";
 
 class CreateProfile extends React.Component {
   handleSubmit = (profile) => {
-    //this.props.addProfile({ ...profile, recommendations: [], bucketList: [] });
-    //this.props.history.push("/profile");
-
-    //const profile = this.state
-    const url ='http://localhost:8000/profiles';
+    const url ='https://food-on-tour-api.herokuapp.com/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),
@@ -31,7 +19,6 @@ class CreateProfile extends React.Component {
         return res.json();
       })
       .then(data => {
-        console.log(data)
         this.setState({
 
           firstName: "",
@@ -45,7 +32,6 @@ class CreateProfile extends React.Component {
         
         });
         this.props.addProfile(data);
-        console.log(this.props)
       })
       .catch(err => {
         this.setState({
@@ -56,7 +42,6 @@ class CreateProfile extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h2>Create My Profile</h2>

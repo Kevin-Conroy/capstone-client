@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 class RestaurantListing extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -43,4 +42,3 @@ class RestaurantListing extends React.Component {
 }
 
 export default RestaurantListing;
-

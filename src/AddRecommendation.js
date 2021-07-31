@@ -14,19 +14,11 @@ class AddRecommendation extends React.Component {
     };
   }
 
-
-
-  addRecommendation = () => {
-    //this.props.addRecommendation();
-    
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
     if (!this.state.name || !this.state.city || !this.state.state) {
       alert("Name, city, and state are required");
   }
-const { name, city, state, website, priceRange } = this.state;
 const recommendation = this.state
 const url ='https://food-on-tour-api.herokuapp.com/addrecommendation';
 const options = {
@@ -65,10 +57,7 @@ fetch(url, options)
   });
   this.props.addRecommendation(this.state);
 }
-    
-  
-
-  handleInput = (field) => (event) => {
+    handleInput = (field) => (event) => {
     this.setState({ [field]: event.target.value });
   };
 

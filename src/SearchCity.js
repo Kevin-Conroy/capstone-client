@@ -6,7 +6,7 @@ class SearchCity extends React.Component {
     super(props);
     this.state = {
       restaurants: [],
-      searchTerm: ""
+      searchTerm: "",
     };
     this.addBucketListItem = this.addBucketListItem.bind(this);
   }
@@ -23,11 +23,10 @@ class SearchCity extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/searchcity')
-      .then(response => response.json())
-      .then(restaurants => {
-        console.log(restaurants);
-        this.setState({ restaurants })
+    fetch("https://food-on-tour-api.herokuapp.com/searchcity")
+      .then((response) => response.json())
+      .then((restaurants) => {
+        this.setState({ restaurants });
       });
   }
 

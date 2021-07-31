@@ -23,16 +23,8 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const { username, password } = this.state;
     axios
-      .post("http://localhost:8000/login", { username, password })
+      .post("https://food-on-tour-api.herokuapp.com/login", { username, password })
       .then((response) => response.data)
-      /*fetch("http://localhost:8000/login", {
-      method: "POST",
-      credentials: "include",
-      mode: "no-cors",
-      body: JSON.stringify({ username, password }),
-    })
-    
-      .then((response) => response.json()) */
       .then((response) => {
         if (!response.successfulLogin) {
           return alert(`${response.field} is incorrect `);
@@ -57,7 +49,7 @@ class LoginForm extends React.Component {
         <label>Password:</label>
         <input
           required
-          type="text"
+          type="password"
           id="password"
           value={this.state.password}
           onChange={(event) => this.updatePassword(event.target.value)}

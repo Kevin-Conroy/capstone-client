@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Profile from "./Profile";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 class ArtistSearch extends React.Component {
   constructor(props) {
@@ -19,9 +18,8 @@ class ArtistSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted");
   }
-  
+
   render() {
     return (
       <div>
