@@ -17,6 +17,7 @@ function Welcome() {
         even putting together your own "bucket list" of places you can't wait to
         check out. Have fun & eat up!<br></br>
         <Link to="/createprofile"><button>Start my Profile</button></Link>
+        <Link to="/login"><button>Login</button></Link>
       </h4>
     </div>
     </main>

@@ -15,7 +15,7 @@ class CreateProfile extends React.Component {
     //this.props.history.push("/profile");
 
     //const profile = this.state
-    const url ='https://food-on-tour-api.herokuapp.com/profiles';
+    const url ='http://localhost:8000/profiles';
     const options = {
       method: 'POST',
       body: JSON.stringify(profile),
@@ -60,7 +60,7 @@ class CreateProfile extends React.Component {
     return (
       <div>
         <h2>Create My Profile</h2>
-        <ProfileForm handleSubmit={this.handleSubmit} />
+        <ProfileForm handleSubmit={this.handleSubmit} profiles={this.props.profiles} />
       </div>
     );
   }

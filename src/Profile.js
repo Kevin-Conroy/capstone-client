@@ -9,8 +9,6 @@ import {
 import AddRecommendation from "./AddRecommendation";
 import RestaurantListing from "./RestaurantListing";
 
-
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +18,6 @@ class Profile extends React.Component {
   }
 
   addBucketListItem(item) {
-    
     this.props.updateProfile({
       ...this.props.profile,
       bucketList: [...this.props.profile.bucketList, item],
@@ -34,11 +31,11 @@ class Profile extends React.Component {
     });
   }
 
-  
-
- 
-
   render() {
+    const credentialsLoaded = this.props.credentialsLoaded;
+    if (!credentialsLoaded) {
+        return <div><h3>Loading...</h3></div>
+    }
     const redirect = this.props.profile;
 
     if (!redirect) {
@@ -51,17 +48,18 @@ class Profile extends React.Component {
         <h1>
           Name: {this.props.profile.firstName} {this.props.profile.lastName}
         </h1>
-        {this.props.profile.profilePicture &&
-        <img
-          src={this.props.profile.profilePicture}
-          alt="Profile Picture"
-        ></img>}
+        {this.props.profile.profilePicture && (
+          <img
+            src={this.props.profile.profilePicture}
+            alt="Profile Picture"
+          ></img>
+        )}
 
-        {this.props.profile.bandname &&
-        <h3>Band/Artist: {this.props.profile.bandname}</h3>}
+        {this.props.profile.bandname && (
+          <h3>Band/Artist: {this.props.profile.bandname}</h3>
+        )}
 
-        {this.props.profile.bio &&
-        <h5>About me: {this.props.profile.bio}</h5>}
+        {this.props.profile.bio && <h5>About me: {this.props.profile.bio}</h5>}
 
         {this.props.profile.id === this.props.userId && (
           <Link to="/editprofile">
@@ -77,17 +75,15 @@ class Profile extends React.Component {
             addBucketListItem={this.addBucketListItem}
           />
         ))}
-       {this.props.profile.bucketList && this.props.profile.bucketList.length > 0 && 
-        <h3>Bucket List</h3>}
+        {this.props.profile.bucketList &&
+          this.props.profile.bucketList.length > 0 && <h3>Bucket List</h3>}
         {this.props.profile.bucketList.map((item) => (
           <RestaurantListing
             restaurant={item}
             addBucketListItem={this.addBucketListItem}
           />
-  
-        
-        ))
-        }</div>
+        ))}
+      </div>
     );
   }
 }

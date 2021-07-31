@@ -1,8 +1,4 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Redirect
-} from "react-router-dom";
 
 class ProfileForm extends React.Component {
   constructor(props) {
@@ -29,6 +25,7 @@ class ProfileForm extends React.Component {
   }
 
   updateUsername(userName) {
+    
     this.setState({ userName });
   }
 
@@ -69,6 +66,7 @@ class ProfileForm extends React.Component {
           value={this.state.firstName}
           onChange={(event) => this.updateFirstName(event.target.value)}
         />
+        
         <br></br>
         <label>Last name:</label>
         <input required
@@ -83,6 +81,7 @@ class ProfileForm extends React.Component {
           type="text"
           id="username"
           value={this.state.userName}
+          
           onChange={(event) => this.updateUsername(event.target.value)}
         ></input>
         <br></br>

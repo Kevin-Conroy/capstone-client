@@ -5,15 +5,13 @@ import Profile from "./Profile";
 class ArtistSearch extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-   
-    artistName: "",
-    }
+      artistName: "",
+    };
 
-  this.handleArtistSearch = this.handleArtistSearch.bind(this)
-
-  };
+    this.handleArtistSearch = this.handleArtistSearch.bind(this);
+  }
 
   handleArtistSearch(artistName) {
     this.setState({ artistName });
@@ -23,16 +21,7 @@ class ArtistSearch extends React.Component {
     event.preventDefault();
     console.log("Submitted");
   }
-/*
-  componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
-      .then(response => response.json())
-      .then(artists => {
-        console.log(artists);
-        this.setState({ artists })
-      });
-  }
-*/
+  
   render() {
     return (
       <div>
@@ -60,9 +49,16 @@ class ArtistSearch extends React.Component {
               }
             })
             .map((profile, key) => {
-              return <div>
-                <Link style={{color: "lightblue"}} to={"/profile/" + profile.id}>{profile.firstName} {profile.lastName}</Link>
-              </div>;
+              return (
+                <div>
+                  <Link
+                    style={{ color: "lightblue" }}
+                    to={"/profile/" + profile.id}
+                  >
+                    {profile.firstName} {profile.lastName}
+                  </Link>
+                </div>
+              );
             })}
         </div>
       </div>

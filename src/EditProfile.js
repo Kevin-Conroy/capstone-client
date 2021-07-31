@@ -1,13 +1,5 @@
 import React from "react";
-import ProfileForm from "./ProfileForm"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
-
+import ProfileForm from "./ProfileForm";
 
 
 class EditProfile extends React.Component {
@@ -46,39 +38,37 @@ class EditProfile extends React.Component {
 
   handleUpdateProfile(profile) {
     this.props.updateProfile(profile);
-    this.props.history.push("/profile")
+    this.props.history.push("/profile");
 
-    const id = profile.id
-    console.log(profile.id)
-    
-    const url =`https://food-on-tour-api.herokuapp.com/profiles/${id}`;
+    const id = profile.id;
+    console.log(profile.id);
+
+    const url = `http://localhost:8000/profiles/${id}`;
     const options = {
-      method: 'PATCH',
+      method: "PATCH",
       body: JSON.stringify(profile),
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     };
     fetch(url, options)
-      .then(res => {
-        if(!res.ok) {
-          throw new Error('Something went wrong, please try again later');
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong, please try again later");
         }
         return res.json();
-        })
-      .then(data => {
-        console.log(data)
-    
-        console.log(this.props)
       })
-      .catch(err => {
+      .then((data) => {
+        console.log(data);
+
+        console.log(this.props);
+      })
+      .catch((err) => {
         this.setState({
-          error: err.message
+          error: err.message,
         });
       });
-  
-    }
-  
+  }
 
   render() {
     return (

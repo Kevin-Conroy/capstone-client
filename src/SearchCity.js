@@ -1,6 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import restaurants from "./RestaurantData";
 import RestaurantListing from "./RestaurantListing";
 
 class SearchCity extends React.Component {
@@ -25,7 +23,7 @@ class SearchCity extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/searchcity')
+    fetch('http://localhost:8000/searchcity')
       .then(response => response.json())
       .then(restaurants => {
         console.log(restaurants);
@@ -80,30 +78,3 @@ class SearchCity extends React.Component {
 }
 
 export default SearchCity;
-
-/*
-<div>
-        <form>
-          <label for="city">Search by city:</label>
-          <br></br>
-          <input type="text" id="city" name="city"></input>
-          <br></br>
-          <label for="cost">Per Diem:</label>
-          <br></br>
-          <select name="price" id="price">
-            <option value="$">$</option>
-            <option value="$$">$$</option>
-            <option value="$$$">$$$</option>
-            <option value="$$$$">$$$$</option>
-          </select>
-        </form>
-
-
-
-        name={restaurant.name}
-                city={restaurant.city}
-                state={restaurant.state}
-                website={restaurant.website}
-                price={restaurant.price}
-
-*/

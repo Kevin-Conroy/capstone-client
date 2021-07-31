@@ -22,13 +22,15 @@ class RestaurantListing extends React.Component {
           <h5>City: {this.props.restaurant.city}</h5>
           <h5>State: {this.props.restaurant.state}</h5>
           <h5>
-            {this.props.restaurant.website && 
-            <a href={this.props.restaurant.website} target="_blank">
-              Go to their site
-            </a>}
+            {this.props.restaurant.website && (
+              <a href={this.props.restaurant.website} target="_blank">
+                Go to their site
+              </a>
+            )}
           </h5>
-          {this.props.restaurant.price && 
-          <h5>Price Range: {this.props.restaurant.price}</h5>}
+          {this.props.restaurant.price && (
+            <h5>Price Range: {this.props.restaurant.price}</h5>
+          )}
           {!!this.props.loggedInUser && (
             <button type="button" onClick={this.handleSubmit}>
               Add to my bucketlist
@@ -42,6 +44,3 @@ class RestaurantListing extends React.Component {
 
 export default RestaurantListing;
 
-/*
-
-          */

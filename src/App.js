@@ -1,6 +1,13 @@
 import React from "react";
-import { Router, withRouter, Switch, Route, Link, Redirect } from "react-router-dom";
-import { createBrowserHistory } from 'history';
+import {
+  Router,
+  withRouter,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
+import { createBrowserHistory } from "history";
 import Welcome from "./Welcome";
 import Header from "./Header";
 import CreateProfile from "./CreateProfile";
@@ -10,65 +17,88 @@ import NavBar from "./NavBar";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import "./App.css";
+import LoginForm from "./LoginForm";
 //import profiles from "./ArtistData";
-import LoginForm from "./LoginForm"
 
 const history = createBrowserHistory();
-const profiles = []
+const profiles = [];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.addProfile = this.addProfile.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
+    this.setLoggedInUser = this.setLoggedInUser.bind(this);
 
     this.state = {
-     
       profiles: profiles.map((profile) => ({
         ...profile,
         recommendations: [],
         bucketList: [],
       })),
       userId: "",
+      credentialsChecked: false
     };
   }
 
   componentDidMount() {
-    fetch('https://food-on-tour-api.herokuapp.com/profiles')
-      .then(response => response.json())
-      .then(profiles => {
+    fetch("http://localhost:8000/profiles/")
+      .then((response) => response.json())
+      .then((profiles) => {
         console.log(profiles);
-        this.setState({ profiles })
+        this.setState({ profiles });
+      })
+      .then(() => {
+        const token = localStorage.getItem("FoodOnTourToken");
+        fetch("http://localhost:8000/checkcredentials", {
+          method: "POST",
+          body: JSON.stringify({ token }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            if (response.userId) {
+              this.setState({ userId: response.userId });
+            } this.setState({ credentialsChecked: true })
+          });
       });
   }
 
   addProfile(profile) {
-    this.setState({
-      profiles: [...this.state.profiles, { ...profile, bucketList: [], recommendations: [] } ],
-      userId: profile.id,
-      bucketList: [],
-      recommendations: []
+    localStorage.setItem("FoodOnTourToken", profile.token)
+    this.setState(
+      {
+        profiles: [
+          ...this.state.profiles,
+          { ...profile, bucketList: [], recommendations: [] },
+        ],
+        userId: profile.id,
+        bucketList: [],
+        recommendations: [],
+      },
+      () => history.push("/profile/")
+    );
+  }
 
-    }, () => history.push("/profile/"));
+  setLoggedInUser(userId) {
+    this.setState({ userId });
   }
 
   updateProfile(profile) {
-    console.log(profile)
+    console.log(profile);
     const otherProfiles = this.state.profiles.filter(
       (p) => p.id !== profile.id
-      
-      
     );
-    console.log(this.state.profiles)
+    console.log(this.state.profiles);
     this.setState({
       profiles: [...otherProfiles, profile],
-      
     });
-    console.log(this.state.profiles)
+    console.log(this.state.profiles);
   }
 
   render() {
-    
     const loggedInUser = this.state.profiles.find(
       (p) => p.id === this.state.userId
     );
@@ -87,7 +117,7 @@ class App extends React.Component {
                 <CreateProfile addProfile={this.addProfile} {...props} />
               )}
             />
-         
+
             <Route
               exact
               path="/artistsearch"
@@ -111,12 +141,14 @@ class App extends React.Component {
               path="/profile/:id?"
               render={(props) => {
                 const profile = this.state.profiles.find(
-                  (p) => p.id === (Number(props.match.params.id) || this.state.userId),
-                  
+                  (p) =>
+                    p.id ===
+                    (Number(props.match.params.id) || this.state.userId)
                 );
                 console.log(profile);
                 return (
                   <Profile
+                    credentialsLoaded={this.state.credentialsChecked}
                     addProfile={this.addProfile}
                     addRecommendation={this.addRecommendation}
                     addBucketListItem={this.addBucketListItem}
@@ -125,8 +157,19 @@ class App extends React.Component {
                     userId={this.state.userId}
                     recommendations={this.recommendations}
                     bucketList={this.bucketList}
-                    
                     {...props}
+                  />
+                );
+              }}
+            />
+            <Route
+              exact
+              path="/login"
+              render={(props) => {
+                return (
+                  <LoginForm
+                    setLoggedInUser={this.setLoggedInUser}
+                    history={history}
                   />
                 );
               }}
@@ -156,15 +199,3 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
-
-   /*
-            <Route 
-              exact
-              path="/login"
-              render={() => loggedInUser ? 
-              <Redirect to="/profile" /> : 
-              <LoginForm />}
-               
-
-            />  
-            */
